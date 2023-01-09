@@ -1,0 +1,130 @@
+<!--::dashboardadmin_part start::-->
+<section class="regervation_part section_padding" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="section_tittle">
+                    <h2>Dashboard Admin</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="regervation_part_iner">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Admins & Users</button>
+                          <!-- <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Chefs</button> -->
+                          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Plats</button>
+                        </div>
+                      </nav>
+                      <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <table class="table table-dark table-stripped">
+                                <thead>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                                </thead>
+                                
+                                  <tr *ngFor="let a of users" >
+                                   <td>{{a.firstName | uppercase}}</td>
+                                   <td>{{a.lastName}}</td>
+                                   <td>{{a.email}}</td>
+                                   <td>{{a.phone}}</td>
+                                   <!-- <td [ngStyle]="{'color': getcolor(a.role)}">{{a.role}}</td> -->
+                                   <td [ngClass]="{'green':a.role=='admin', 
+                                                   'blue' :a.role=='client'}">{{a.role}}</td>
+                                   <td>
+                                    <button type="button" class="btn btn-outline-success" (click)="displayUser(a._id)">Display</button>
+                                    <button type="button" class="btn btn-outline-warning" (click)="editUser(a._id,a.role)">Edit</button>
+                                    <button type="button" class="btn btn-outline-danger" (click)="deleteUser(a._id)">Delete</button>
+                                   </td>
+                                
+                                    
+                                  </tr>
+                                  <tr>
+                                    
+                                  </tr>
+                                  <tr>
+                                  
+                                  </tr>
+                                
+                              </table>    
+                              <button class="btn btn-outline-danger " (click)="getPdf()" >Download PDF</button>
+                        </div>
+                        <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <table class="table table-dark table-stripped">
+                                <thead>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Date of birth</th>
+                                <th>Speciality</th>
+                                <th>Experience</th>
+                                <th>Actions</th>
+                                </thead>
+                                
+                                  <tr *ngFor="let a of chefs" >
+                                   <td>{{a.firstName | reverse}}</td>
+                                   <td>{{a.lastName }}</td>
+                                   <td>{{a.email}}</td>
+                                   <td>{{a.dateOfBirth}}</td>
+                                   <td>{{a.speciality}}</td>
+                                   <td>{{a.experience}} years</td>
+                                   <td>
+                                    <button type="button" class="btn btn-outline-success" (click)="displayUser(a._id)">Display</button>
+                                    <button type="button" class="btn btn-outline-warning" (click)="editChef(a._id)">Edit</button>
+                                    <button type="button" class="btn btn-outline-danger" (click)="deleteUser(a._id)">Delete</button>
+                                   </td>
+                                
+                                    
+                                  </tr>
+                                  <tr>
+                                    
+                                  </tr>
+                                  <tr>
+                                  
+                                  </tr>
+                                
+                              </table>       
+                        </div> -->
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <table class="table table-dark table-stripped">
+                                <thead>
+                                <th>Plat Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Chef</th>
+                              
+                                </thead>
+                                
+                                  <tr *ngFor="let a of plats" >
+                                   <td>{{a.platName}}</td>
+                                   <td>{{a.price}}</td>
+                                   <td>{{a.description}}</td>
+                                   <ng-container *ngFor="let u of users">
+                                     <td *ngIf="u._id == a.idChef"> {{u.firstName}} {{u.lastName}}
+
+                                     </td>
+                                   </ng-container>
+                                  </tr>
+                                  <tr>
+                                    
+                                  </tr>
+                                  <tr>
+                                  
+                                  </tr>
+                                
+                              </table>       
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--::dashboardadmin_part end::-->
